@@ -453,42 +453,19 @@ def WriteFullOTAPackage(input_zip, output_zip):
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
-  script.Print("                                        ");
-  script.Print("                                        ");
-  script.Print("            ..;codxxddl:,.              ");
-  script.Print("        .,d0WMMMMMMMMMMMMMXkc.          ");
-  script.Print("      .dNMMMMMMMMMMMMMMMMMMMMM0:        ");
-  script.Print("    .kMMMMMMMMMMMMMMMMMMMMMMMMMMX.      ");
-  script.Print("   :WMMMMMMMMMMWNXXNWMMMMMMMMMMk'       ");
-  script.Print("  lMMMMMMMXxc,.      .,cxXMMWx.         ");
-  script.Print(" ;MMMMMW`'              ;'7l;           ");
-  script.Print(" KMMMM7 d;               `;`            ");
-  script.Print(".MMMW .mM:                              ");
-  script.Print("'MMM ,MMlx                              ");
-  script.Print(".WMO nMMMW'                           .l");
-  script.Print(" dMl MMMMMN'                         .x.");
-  script.Print(" .Xl MMMMMMWl.                      ;N; ");
-  script.Print("  .d`MMMMMMMMXc.                 .:KMo  ");
-  script.Print("   ..dMMMMMMMMMWOl'.         .. .XMW:   ");
-  script.Print("      ;KMMMMMMMMMMMMX0kxxxkOKW .0Mk.    ");
-  script.Print("       .;OMMMMMMMMMMMMMMMMMMK ;Kd.      ");
-  script.Print("          .:xXMMMMMMMMMMMWk  ,SP        ");
-  script.Print("             .':lodxddltl7` d'`         ");
-  script.Print("                                        ");
-  script.Print("                                        ");
-
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
   script.Print("Formating System...")
   script.FormatPartition("/system")
-  script.Print("Mounting System...")
+  script.Print("@Mounting System...")
   script.Mount("/system")
   #script.UnpackPackageDir("recovery", "/system")
   script.Print("Installing System...")
   script.UnpackPackageDir("system", "/system")
+  script.Comment("@AROMASCRIPT@")
   #script.CopyFile("changelog.txt", "/system/etc/")
-  script.Print("Creating Symlinks...") 
+  script.Print("@Creating Symlinks...") 
 
 
   symlinks = CopySystemFiles(input_zip, output_zip)
